@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OwlTin.Common", "OwlTin.Common\OwlTin.Common.csproj", "{E2081EA9-6D1D-4E42-9BEF-CBCAB877B5B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwlTin.Authentication", "OwlTin.Authentication\OwlTin.Authentication.csproj", "{0E15849B-23A7-4551-944B-14FFA73A656A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E2081EA9-6D1D-4E42-9BEF-CBCAB877B5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2081EA9-6D1D-4E42-9BEF-CBCAB877B5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2081EA9-6D1D-4E42-9BEF-CBCAB877B5B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E15849B-23A7-4551-944B-14FFA73A656A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E15849B-23A7-4551-944B-14FFA73A656A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E15849B-23A7-4551-944B-14FFA73A656A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E15849B-23A7-4551-944B-14FFA73A656A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
