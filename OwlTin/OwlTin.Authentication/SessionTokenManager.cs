@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication;
 
-namespace Mitchell.Authentication
+namespace OwlTin.Authentication
 {
     public class SessionTokenManager
     {

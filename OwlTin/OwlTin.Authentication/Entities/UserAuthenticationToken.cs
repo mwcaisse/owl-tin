@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Mitchell.Common.Entities;
+using OwlTin.Common.Entities;
 
-namespace Mitchell.Authentication.Entities
+namespace OwlTin.Authentication.Entities
 {
     public partial class UserAuthenticationToken : ITrackedEntity, IActiveEntity
     {

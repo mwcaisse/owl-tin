@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mitchell.Common.Exceptions
+namespace OwlTin.Common.Exceptions
 {
     public class EntityValidationException : Exception
     {

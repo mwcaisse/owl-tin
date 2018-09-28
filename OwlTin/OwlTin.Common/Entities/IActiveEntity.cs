@@ -1,5 +1,5 @@
 ﻿
-namespace Mitchell.Common.Entities
+namespace OwlTin.Common.Entities
 {
     public interface IActiveEntity
     {

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
-using Mitchell.Common.Entities;
-using Mitchell.Common.Enums;
-using Mitchell.Common.Exceptions;
-using Mitchell.Common.ViewModels;
+using OwlTin.Common.Entities;
+using OwlTin.Common.Enums;
+using OwlTin.Common.Exceptions;
+using OwlTin.Common.ViewModels;
 
-namespace Mitchell.Common
+namespace OwlTin.Common
 {
     public static class LinqExtensions
     {

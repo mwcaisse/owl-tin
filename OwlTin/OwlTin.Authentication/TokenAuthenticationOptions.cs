@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 
-namespace Mitchell.Authentication
+namespace OwlTin.Authentication
 {
     public class TokenAuthenticationOptions : AuthenticationSchemeOptions
     {

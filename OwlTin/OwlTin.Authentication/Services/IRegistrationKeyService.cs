@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Mitchell.Authentication.Entities;
-using Mitchell.Authentication.ViewModels;
-using Mitchell.Common.ViewModels;
+using OwlTin.Authentication.Entities;
+using OwlTin.Authentication.ViewModels;
+using OwlTin.Common.ViewModels;
 
-namespace Mitchell.Authentication.Services
+namespace OwlTin.Authentication.Services
 {
     public interface IRegistrationKeyService
     {

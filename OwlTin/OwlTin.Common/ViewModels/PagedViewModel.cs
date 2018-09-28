@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Common.ViewModels
+namespace OwlTin.Common.ViewModels
 {
     public class GeneralPagedViewModel
     {

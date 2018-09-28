@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Authentication.Models
+namespace OwlTin.Authentication.Models
 {
     public interface IRequestInformation
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Common.Enums
+namespace OwlTin.Common.Enums
 {
     public enum FilterOperation
     {

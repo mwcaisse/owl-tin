@@ -1,10 +1,10 @@
-﻿using Mitchell.Authentication.ViewModels;
-using Mitchell.Authentication.Entities;
+﻿using OwlTin.Authentication.ViewModels;
+using OwlTin.Authentication.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Authentication.Services
+namespace OwlTin.Authentication.Services
 {
     public interface IUserService
     {

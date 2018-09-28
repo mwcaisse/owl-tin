@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Authentication.ViewModels
+namespace OwlTin.Authentication.ViewModels
 {
     public class UserRegistrationViewModel
     {

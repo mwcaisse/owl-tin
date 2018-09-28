@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 
-namespace Mitchell.Authentication.Models
+namespace OwlTin.Authentication.Models
 {
     public class ServerRequestInformation : IRequestInformation
     {

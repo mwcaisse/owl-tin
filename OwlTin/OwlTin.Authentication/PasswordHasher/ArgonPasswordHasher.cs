@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Sodium;
 
-namespace Mitchell.Authentication.PasswordHasher
+namespace OwlTin.Authentication.PasswordHasher
 {
     public class ArgonPasswordHasher : IPasswordHasher
     {

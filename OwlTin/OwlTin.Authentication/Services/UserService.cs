@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Mitchell.Authentication.Data;
-using Mitchell.Authentication.Entities;
-using Mitchell.Authentication.PasswordHasher;
-using Mitchell.Authentication.ViewModels;
-using Mitchell.Common.Exceptions;
+using OwlTin.Authentication.Data;
+using OwlTin.Authentication.Entities;
+using OwlTin.Authentication.PasswordHasher;
+using OwlTin.Authentication.ViewModels;
+using OwlTin.Common.Exceptions;
 
-namespace Mitchell.Authentication.Services
+namespace OwlTin.Authentication.Services
 {
     public class UserService : IUserService
     {

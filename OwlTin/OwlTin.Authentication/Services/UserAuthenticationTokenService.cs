@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Mitchell.Authentication.Data;
-using Mitchell.Authentication.Entities;
-using Mitchell.Authentication.Models;
-using Mitchell.Authentication.PasswordHasher;
-using Mitchell.Common;
-using Mitchell.Common.Exceptions;
-using Mitchell.Common.ViewModels;
+using OwlTin.Authentication.Data;
+using OwlTin.Authentication.Entities;
+using OwlTin.Authentication.Models;
+using OwlTin.Authentication.PasswordHasher;
+using OwlTin.Common;
+using OwlTin.Common.Exceptions;
+using OwlTin.Common.ViewModels;
 
-namespace Mitchell.Authentication.Services
+namespace OwlTin.Authentication.Services
 {
     public class UserAuthenticationTokenService : IUserAuthenticationTokenService
     {

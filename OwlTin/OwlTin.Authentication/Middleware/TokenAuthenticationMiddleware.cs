@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
-namespace Mitchell.Authentication.Middleware
+namespace OwlTin.Authentication.Middleware
 {
     public class TokenAuthenticationMiddleware
     {

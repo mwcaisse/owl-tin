@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Mitchell.Common.Enums;
+using OwlTin.Common.Enums;
 
-namespace Mitchell.Common.ViewModels
+namespace OwlTin.Common.ViewModels
 {
     public class FilterParam
     {

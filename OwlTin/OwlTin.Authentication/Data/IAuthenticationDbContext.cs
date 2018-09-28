@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Mitchell.Authentication.Entities;
+using OwlTin.Authentication.Entities;
 
-namespace Mitchell.Authentication.Data
+namespace OwlTin.Authentication.Data
 {
     public interface IAuthenticationDbContext
     {

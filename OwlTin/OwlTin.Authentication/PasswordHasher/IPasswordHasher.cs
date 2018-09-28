@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Authentication.PasswordHasher
+namespace OwlTin.Authentication.PasswordHasher
 {
     public interface IPasswordHasher
     {

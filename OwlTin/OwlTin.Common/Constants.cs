@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Common
+namespace OwlTin.Common
 {
     public static class Constants
     {

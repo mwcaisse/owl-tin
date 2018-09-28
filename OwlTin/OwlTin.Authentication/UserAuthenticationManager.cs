@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
-using Mitchell.Authentication.PasswordHasher;
-using Mitchell.Authentication.Services;
+using OwlTin.Authentication.PasswordHasher;
+using OwlTin.Authentication.Services;
 
-namespace Mitchell.Authentication.Managers
+namespace OwlTin.Authentication.Managers
 {
     public class UserAuthenticationManager
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mitchell.Common.Exceptions
+namespace OwlTin.Common.Exceptions
 {
     public class QueryException : Exception
     {

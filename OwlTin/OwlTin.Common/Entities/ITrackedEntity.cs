@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mitchell.Common.Entities
+namespace OwlTin.Common.Entities
 {
     public interface ITrackedEntity
     {

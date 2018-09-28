@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mitchell.Authentication.Entities;
-using Mitchell.Common.Data;
+using OwlTin.Authentication.Entities;
+using OwlTin.Common.Data;
 
-namespace Mitchell.Authentication.Data.Mapping
+namespace OwlTin.Authentication.Data.Mapping
 {
     public class UserAuthenticationTokenMap : IEntityTypeConfiguration<UserAuthenticationToken>
     {

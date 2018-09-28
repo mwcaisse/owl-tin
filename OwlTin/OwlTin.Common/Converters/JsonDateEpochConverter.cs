@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Mitchell.Common.Converters
+namespace OwlTin.Common.Converters
 {
     public class JsonDateEpochConverter : JsonConverter
     {
