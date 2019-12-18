@@ -54,7 +54,13 @@ namespace OwlTin.Common
             return (IQueryable<T>)genericMethod.Invoke(null, new object[] { query, expr });
         }
 
-
+        public static IQueryable<T> Sort<T>(this IQueryable<T> query, SortParam sortParam)
+        {
+            return sortParam.Ascending ? 
+                query.OrderBy(sortParam.ColumnName) : 
+                query.OrderByDescending(sortParam.ColumnName);
+        }
+        
         public static PagedViewModel<T> PageAndSort<T>(this IQueryable<T> query, int skip,
             int take, SortParam sortParam, SortParam defaultSortParam = null) where T : ITrackedEntity
         {
@@ -74,20 +80,13 @@ namespace OwlTin.Common
                 }
             }
 
-            if (sortParam.Ascending)
-            {
-                query = query.OrderBy(sortParam.ColumnName);
-            }
-            else
-            {
-                query = query.OrderByDescending(sortParam.ColumnName);
-            }
+            query = query.Sort(sortParam);
 
             int count = query.Count();
 
-            if (take <= 0 || take > 100)
+            if (take <= 0)
             {
-                throw new EntityValidationException("Invalid page size. Take must be between 1 and 100.");
+                throw new EntityValidationException("Invalid page size. Take must be at least 1.");
             }
             if (skip < 0)
             {
