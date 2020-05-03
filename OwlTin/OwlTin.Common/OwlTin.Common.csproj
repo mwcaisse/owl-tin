@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackageVersion>1.1.0</PackageVersion>
+    <RepositoryUrl>https://github.com/mwcaisse/owl-tin</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
