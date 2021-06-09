@@ -85,7 +85,6 @@ trigger:
   ref:
     - refs/tags/*.*.*
 
-
 ---
 kind: secret
 name: github-username
