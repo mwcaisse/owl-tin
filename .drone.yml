@@ -18,7 +18,7 @@ steps:
     image: node
     commands:
       - npm install -g semver       
-      - echo "$(semver -i patch $(cat ./HIGHEST_TAG))-${DRONE_COMMIT}" > ./CI_VERSION
+      - echo "$(semver -i patch $(cat ./HIGHEST_TAG))-CI.${DRONE_COMMIT}" > ./CI_VERSION
       - echo "Version $(cat ./CI_VERSION)"      
     
   - name: build
