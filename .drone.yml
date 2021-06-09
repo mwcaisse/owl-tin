@@ -53,6 +53,11 @@ type: docker
 name: publish-release
 
 steps:
+  - name: unit-tests
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    commands:
+      - dotnet test -l "console;verbosity=detailed"
+      
   - name: build
     image: mcr.microsoft.com/dotnet/sdk:5.0
     commands:
