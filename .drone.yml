@@ -1,0 +1,56 @@
+kind: pipeline
+type: docker
+name: publish-pre-release
+
+steps:  
+  - name: fetch-tags
+    image: alpine/git
+    commands:
+      - git fetch --tags
+      - git tag -l --sort -version:refname | head -n 1 > ./HIGHEST_TAG
+      
+  - name: unit-tests
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    commands:
+      - dotnet test -l "console;verbosity=detailed"
+    
+  - name: version
+    image: node
+    commands:
+      - npm install -g semver       
+      - echo "$(semver -i patch $(cat ./HIGHEST_TAG))-${DRONE_COMMIT}" > ./CI_VERSION
+      - echo "Version $(cat ./CI_VERSION)"      
+    
+  - name: build
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    commands:
+      - dotnet restore
+      - dotnet pack --configuration Release /p:PackageVersion="$(cat ./CI_VERSION)"
+      - mkdir build-output
+      - cp -R ./**/bin/Release/*.nupkg ./build-output/
+    
+  - name: publish
+    image: mcr.microsoft.com/dotnet/sdk:5.0
+    commands:      
+      - dotnet nuget add source "$${OWLTIN_SOURCE}" --name owltin --username "$${OWLTIN_USERNAME}" --password "$${OWLTIN_PASSWORD}" --store-password-in-clear-text
+      - dotnet nuget push ./build-output/*.nupkg --api-key "$${OWLTIN_PASSWORD}" --source "owltin"
+    environment:
+      OWLTIN_SOURCE: https://nuget.pkg.github.com/mwcaisse/index.json
+      OWLTIN_USERNAME:
+        from_secret: github-username
+      OWLTIN_PASSWORD:
+        from_secret: github-password
+
+---
+kind: secret
+name: github-username
+get:
+  path: drone/github
+  name: username
+
+---
+kind: secret
+name: github-password
+get:
+  path: drone/github
+  name: access-token
