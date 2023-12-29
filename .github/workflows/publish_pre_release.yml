@@ -39,10 +39,10 @@ jobs:
       - name: "Determine pre-release version" 
         run: |
           git fetch --tags
-          git tag -l --sort -version:refname | head -n 1 > $HIGHEST_TAG
+          git tag -l --sort -version:refname | head -n 1 > "${HIGHEST_TAG}"
           
-          echo "$(semver -i patch $HIGHEST_TAG)-CI.${{ github.sha }}" > $CI_VERSION
-          echo "Using Version $CI_VERSION"
+          echo "$(semver -i patch $HIGHEST_TAG)-CI.${{ github.sha }}" > "${CI_VERSION}"
+          echo "Using Version ${CI_VERSION}"
           
           echo "VERSION=${CI_VERSION}" >> "$GITHUB_OUTPUT" 
     
