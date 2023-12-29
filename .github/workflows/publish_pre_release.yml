@@ -37,6 +37,7 @@ jobs:
       - run:  npm install -g semver
       
       - name: "Determine pre-release version" 
+        id: determine_version
         run: |
           git fetch --tags
           HIGHEST_TAG=$(git tag -l --sort -version:refname | head -n 1) 
@@ -45,6 +46,8 @@ jobs:
           echo "Using Version ${CI_VERSION}"
           
           echo "VERSION=${CI_VERSION}" >> "$GITHUB_OUTPUT" 
+    outputs:
+      version: ${{ steps.determine_version.outputs.VERSION }}
     
   build_publish:
     name: "Build and publish"
@@ -65,7 +68,7 @@ jobs:
         
       - name: "Build and Publish"
         run: |
-          dotnet pack --configuration Release /p:PackageVersion="${{ steps.determine_version.outputs.VERSION }}"
+          dotnet pack --configuration Release /p:PackageVersion="${{ needs.determine_version.outputs.VERSION }}"
           
           dotnet nuget add source "https://nuget.pkg.github.com/mwcaisse/index.json" --name owltin --username "${{ github.actor }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
           
