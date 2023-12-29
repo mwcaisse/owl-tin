@@ -1,0 +1,77 @@
+name: Build and publish pre-release
+on:
+  workflow_dispatch: 
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+  
+  unit_tests:
+    name: "Unit Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: "Setup .NET"
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "5.0"
+          
+      - name: "Install .NET dependencies"
+        run: dotnet restore
+        
+      - name: "Run tests"
+        run: dotnet test l "console;verbosity=detailed"        
+  
+  determine_version:
+    name: "Determine Version"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4        
+      - uses: actions/setup-node@v4
+        with:
+          cache: 'npm'
+      - run:  npm install -g semver
+      
+      - name: "Determine pre-release version" 
+        run: |
+          git fetch --tags
+          git tag -l --sort -version:refname | head -n 1 > $HIGHEST_TAG
+          
+          echo "$(semver -i patch $HIGHEST_TAG)-CI.${{ github.sha }}" > $CI_VERSION
+          echo "Using Version $CI_VERSION"
+          
+          echo "VERSION=${CI_VERSION}" >> "$GITHUB_OUTPUT" 
+    
+  build_publish:
+    name: "Build and publish"
+    runs-on: ubuntu-latest
+    needs:
+      - unit_tests
+      - determine_version
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Setup .NET"
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "5.0"
+
+      - name: "Install .NET dependencies"
+        run: dotnet restore
+        
+      - name: "Build and Publish"
+        run: |
+          dotnet pack --configuration Release /p:PackageVersion="${{ steps.determine_version.outputs.VERSION }}"
+          
+          dotnet nuget add source "https://nuget.pkg.github.com/mwcaisse/index.json" --name owltin --username "${{ github.actor }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
+          
+          mkdir build-output
+          cp -R ./**/bin/Release/*.nupkg ./build-output/          
+          
+          dotnet nuget push ./build-output/*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "owltin"
