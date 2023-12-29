@@ -32,9 +32,9 @@ runs:
       run: |
         dotnet pack --configuration Release /p:PackageVersion="${{ inputs.version }}"
         
-        dotnet nuget add source "${{ inputs.nuget_registry }}" --name owltin --username "${{ inputs.nuget_username }}" --password "${{ nuget_password }}" --store-password-in-clear-text
+        dotnet nuget add source "${{ inputs.nuget_registry }}" --name owltin --username "${{ inputs.nuget_username }}" --password "${{ inputs.nuget_password }}" --store-password-in-clear-text
         
         mkdir build-output
         cp -R ./**/bin/Release/*.nupkg ./build-output/          
         
-        dotnet nuget push ./build-output/*.nupkg --api-key "${{ nuget_password }}" --source "owltin"
+        dotnet nuget push ./build-output/*.nupkg --api-key "${{ inputs.nuget_password }}" --source "owltin"
