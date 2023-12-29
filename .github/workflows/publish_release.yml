@@ -1,0 +1,36 @@
+name: Build and publish release
+on:
+  push:
+    tags:
+      - '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  
+  unit_tests:
+    name: "Unit Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Run unit tests"
+        uses: ./.github/actions/unit_tests
+  
+  build_publish:
+    name: "Build and publish"
+    runs-on: ubuntu-latest
+    needs:
+      - unit_tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Build and publish"
+        uses: ./.github/actions/build_and_publish
+        with:
+          version: ${{ github.ref_name }}
+          nuget_registry: "https://nuget.pkg.github.com/mwcaisse/index.json"
+          nuget_username: ${{ github.actor }}
+          nuget_password: ${{ secrets.GITHUB_TOKEN }}

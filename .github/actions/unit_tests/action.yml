@@ -1,0 +1,18 @@
+name: "Unit Tests"
+description: Runs unit tests
+
+runs:
+  using: composite
+  steps:
+    - name: "Setup .NET"
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: "6.0"
+
+    - name: "Install .NET dependencies"
+      shell: bash
+      run: dotnet restore
+
+    - name: "Run tests"
+      shell: bash
+      run: dotnet test -l "console;verbosity=detailed" 

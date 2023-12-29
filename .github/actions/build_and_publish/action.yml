@@ -1,0 +1,40 @@
+name: "Build and publish"
+description: Runs unit tests
+
+inputs:
+  version:
+    description: The version of the package to publish
+    required: true
+  nuget_registry:
+    description: The URL to the nuget registry to publish to
+    required: true
+  nuget_username:
+    description: The username to use to auth with nuget registry
+    required: true
+  nuget_password:
+    description: The password to use to auth with nuget registry
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: "Setup .NET"
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: "5.0"
+
+    - name: "Install .NET dependencies"
+      shell: bash
+      run: dotnet restore
+  
+    - name: "Build and Publish"
+      shell: bash
+      run: |
+        dotnet pack --configuration Release /p:PackageVersion="${{ inputs.version }}"
+        
+        dotnet nuget add source "${{ inputs.nuget_registry }}" --name owltin --username "${{ inputs.nuget_username }}" --password "${{ nuget_password }}" --store-password-in-clear-text
+        
+        mkdir build-output
+        cp -R ./**/bin/Release/*.nupkg ./build-output/          
+        
+        dotnet nuget push ./build-output/*.nupkg --api-key "${{ nuget_password }}" --source "owltin"

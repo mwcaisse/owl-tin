@@ -17,16 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: "Setup .NET"
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "6.0"
-          
-      - name: "Install .NET dependencies"
-        run: dotnet restore
-        
-      - name: "Run tests"
-        run: dotnet test -l "console;verbosity=detailed"        
+      - name: "Run unit tests"
+        uses: ./.github/actions/unit_tests    
   
   determine_version:
     name: "Determine Version"
@@ -57,22 +49,11 @@ jobs:
       - determine_version
     steps:
       - uses: actions/checkout@v4
-
-      - name: "Setup .NET"
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "5.0"
-
-      - name: "Install .NET dependencies"
-        run: dotnet restore
         
-      - name: "Build and Publish"
-        run: |
-          dotnet pack --configuration Release /p:PackageVersion="${{ needs.determine_version.outputs.VERSION }}"
-          
-          dotnet nuget add source "https://nuget.pkg.github.com/mwcaisse/index.json" --name owltin --username "${{ github.actor }}" --password "${{ secrets.GITHUB_TOKEN }}" --store-password-in-clear-text
-          
-          mkdir build-output
-          cp -R ./**/bin/Release/*.nupkg ./build-output/          
-          
-          dotnet nuget push ./build-output/*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "owltin"
+      - name: "Build and publish"
+        uses: ./.github/actions/build_and_publish
+        with:
+          version: ${{ needs.determine_version.outputs.VERSION }}
+          nuget_registry: "https://nuget.pkg.github.com/mwcaisse/index.json"
+          nuget_username: ${{ github.actor }}
+          nuget_password: ${{ secrets.GITHUB_TOKEN }}
